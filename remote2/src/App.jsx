@@ -3,6 +3,7 @@ import './App.css';
 import Button from './components/Button.jsx';
 import CardList from './components/CardList.jsx';
 import { useAppStore } from './stores/appStore.js';
+import { UI_MESSAGES } from './constants/app.js';
 
 const AppContainer = styled.div`
   min-height: 85vh;
@@ -42,7 +43,7 @@ const Subtitle = styled.h1`
 `;
 
 const ButtonContainer = styled.div`
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 `;
 
 function App() {
@@ -56,10 +57,10 @@ function App() {
   return (
     <AppContainer>
       <Title>Welcome to the Remote2 MFE</Title>
-      <Subtitle>Movie: Click</Subtitle>
+      <Subtitle>Movie: {UI_MESSAGES.FEATURED_MOVIE_TITLE}</Subtitle>
 
       <ButtonContainer>
-        <Button onClick={handleLoadActors}>Load Actors</Button>
+        <Button onClick={handleLoadActors}>{UI_MESSAGES.LOAD_ACTORS}</Button>
       </ButtonContainer>
 
       {showActors && <CardList />}

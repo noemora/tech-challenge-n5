@@ -7,21 +7,16 @@ export const useAppStore = create(
     (set) => ({
       // UI State
       showActors: false,
-      shouldFetchActors: false,
 
       // Actions
       setShowActors: (show) =>
         set({ showActors: show }, false, 'setShowActors'),
 
-      setShouldFetchActors: (should) =>
-        set({ shouldFetchActors: should }, false, 'setShouldFetchActors'),
-
-      // Trigger both show and fetch
+      // Trigger show actors
       loadActors: () =>
         set(
           {
             showActors: true,
-            shouldFetchActors: true,
           },
           false,
           'loadActors'
@@ -32,7 +27,6 @@ export const useAppStore = create(
         set(
           {
             showActors: false,
-            shouldFetchActors: false,
           },
           false,
           'reset'

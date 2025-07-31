@@ -1,6 +1,7 @@
 // Application constants
 export const MOVIE_IDS = {
   DEFAULT: parseInt(import.meta.env.VITE_DEFAULT_MOVIE_ID) || 9339,
+  FEATURED_MOVIE_TITLE: import.meta.env.VITE_FEATURED_MOVIE_TITLE || 'Click',
 };
 
 export const DISPLAY_LIMITS = {
@@ -9,6 +10,8 @@ export const DISPLAY_LIMITS = {
 
 export const UI_MESSAGES = {
   LOADING_ACTORS: 'Loading actors...',
+  SCROLL: 'Scroll to see more actors',
+  LOAD_ACTORS: 'Load Actors',
 };
 
 export const QUERY_CONFIG = {

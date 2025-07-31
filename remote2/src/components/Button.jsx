@@ -35,7 +35,7 @@ const StyledButton = styled.button`
 `;
 export default function Button({
   onClick,
-  children = 'Cargar Actores',
+  children = 'Load Actors',
   disabled = false,
 }) {
   return (
