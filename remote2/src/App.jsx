@@ -1,8 +1,8 @@
-import { useState } from 'react';
 import styled from 'styled-components';
 import './App.css';
 import Button from './components/Button.jsx';
 import CardList from './components/CardList.jsx';
+import { useAppStore } from './stores/appStore.js';
 
 const AppContainer = styled.div`
   min-height: 85vh;
@@ -32,7 +32,8 @@ const ButtonContainer = styled.div`
 `;
 
 function App() {
-  const [showActors, setShowActors] = useState(false);
+  const showActors = useAppStore((state) => state.showActors);
+  const setShowActors = useAppStore((state) => state.setShowActors);
 
   const handleLoadActors = () => {
     setShowActors(true);

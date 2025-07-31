@@ -129,9 +129,9 @@ const ScrollHint = styled.div`
 
 // Component responsible only for rendering the list of cards
 export default function CardList() {
-  const { actors, loading, error } = useActors(MOVIE_IDS.DEFAULT);
+  const { data: actors = [], isLoading, error } = useActors(MOVIE_IDS.DEFAULT);
 
-  if (loading) {
+  if (isLoading) {
     return (
       <Container>
         <Title>{UI_MESSAGES.CARD_LIST_TITLE}</Title>
@@ -147,7 +147,7 @@ export default function CardList() {
       <Container>
         <Title>{UI_MESSAGES.CARD_LIST_TITLE}</Title>
         <MessageContainer>
-          <ErrorMessage error={error} />
+          <ErrorMessage error={error.message} />
         </MessageContainer>
       </Container>
     );
