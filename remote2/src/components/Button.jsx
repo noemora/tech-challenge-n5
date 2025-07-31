@@ -33,7 +33,6 @@ const StyledButton = styled.button`
     transform: none;
   }
 `;
-
 export default function Button({
   onClick,
   children = 'Cargar Actores',

@@ -1,6 +1,6 @@
 // Application constants
 export const MOVIE_IDS = {
-  DEFAULT: 9339, // The movie ID currently being used
+  DEFAULT: parseInt(import.meta.env.VITE_DEFAULT_MOVIE_ID) || 9339,
 };
 
 export const DISPLAY_LIMITS = {
@@ -9,5 +9,9 @@ export const DISPLAY_LIMITS = {
 
 export const UI_MESSAGES = {
   LOADING_ACTORS: 'Loading actors...',
-  CARD_LIST_TITLE: 'Card List Remote 2',
+};
+
+export const QUERY_CONFIG = {
+  STALE_TIME: parseInt(import.meta.env.VITE_QUERY_STALE_TIME) || 5 * 60 * 1000, // 5 minutes
+  CACHE_TIME: parseInt(import.meta.env.VITE_QUERY_CACHE_TIME) || 10 * 60 * 1000, // 10 minutes
 };

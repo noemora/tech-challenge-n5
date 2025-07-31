@@ -1,10 +1,17 @@
 // API service with pure functions for TMDB API
 const API_CONFIG = {
-  baseUrl: 'https://api.themoviedb.org/3',
-  imageBaseUrl: 'https://image.tmdb.org/t/p/w500',
-  token:
-    'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxZWMwZTM0MGM5MDRjNzUzMmE3MGI0ZDllZDJmMTE5NiIsIm5iZiI6MTc1Mzg4OTk0Ni4yMjUsInN1YiI6IjY4OGEzYzlhNWEyNDA0NWY5OGIyNmNjZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.SYCxaFQene9SN4OqHM4cllAsj5dLu_zRdHhUv3CIy-o',
+  baseUrl:
+    import.meta.env.VITE_TMDB_API_BASE_URL || 'https://api.themoviedb.org/3',
+  imageBaseUrl:
+    import.meta.env.VITE_TMDB_IMAGE_BASE_URL ||
+    'https://image.tmdb.org/t/p/w500',
+  token: import.meta.env.VITE_TMDB_API_TOKEN,
 };
+
+// Validate required environment variables
+if (!API_CONFIG.token) {
+  throw new Error('VITE_TMDB_API_TOKEN is required but not provided');
+}
 
 // Pure function to fetch movie credits
 export const fetchMovieCredits = async (movieId, language = 'en-US') => {

@@ -6,7 +6,7 @@ const StyledCard = styled.div`
   width: 280px;
   min-width: 280px; /* Prevent shrinking in flex container */
   flex-shrink: 0; /* Prevent shrinking */
-  min-height: 450px;
+  min-height: 400px;
   background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
   border-radius: 16px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 2px 8px rgba(0, 0, 0, 0.2);

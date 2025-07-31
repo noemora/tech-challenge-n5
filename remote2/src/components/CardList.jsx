@@ -3,6 +3,7 @@ import Card from './Card.jsx';
 import { useActors } from '../hooks/useActors.js';
 import { LoadingMessage, ErrorMessage } from './ui/Messages.jsx';
 import { MOVIE_IDS, UI_MESSAGES } from '../constants/app.js';
+import { useAppStore } from '../stores/appStore.js';
 
 const Container = styled.div`
   width: 100%;
@@ -129,12 +130,29 @@ const ScrollHint = styled.div`
 
 // Component responsible only for rendering the list of cards
 export default function CardList() {
-  const { data: actors = [], isLoading, error } = useActors(MOVIE_IDS.DEFAULT);
+  const shouldFetchActors = useAppStore((state) => state.shouldFetchActors);
+  const {
+    data: actors = [],
+    isLoading,
+    error,
+  } = useActors(MOVIE_IDS.DEFAULT, 10, shouldFetchActors);
+
+  // If we haven't started fetching yet, show initial message
+  if (!shouldFetchActors) {
+    return (
+      <Container>
+        <MessageContainer>
+          <p style={{ color: 'rgba(255, 255, 255, 0.8)' }}>
+            Presiona el botón para cargar los actores
+          </p>
+        </MessageContainer>
+      </Container>
+    );
+  }
 
   if (isLoading) {
     return (
       <Container>
-        <Title>{UI_MESSAGES.CARD_LIST_TITLE}</Title>
         <MessageContainer>
           <LoadingMessage message={UI_MESSAGES.LOADING_ACTORS} />
         </MessageContainer>
@@ -145,7 +163,6 @@ export default function CardList() {
   if (error) {
     return (
       <Container>
-        <Title>{UI_MESSAGES.CARD_LIST_TITLE}</Title>
         <MessageContainer>
           <ErrorMessage error={error.message} />
         </MessageContainer>
@@ -155,8 +172,7 @@ export default function CardList() {
 
   return (
     <Container>
-      <Title>{UI_MESSAGES.CARD_LIST_TITLE}</Title>
-      <ScrollHint>Desliza horizontalmente para ver más actores</ScrollHint>
+      <ScrollHint>Scroll to see more actors</ScrollHint>
       <StyledCardList>
         {actors.map((actor) => (
           <Card

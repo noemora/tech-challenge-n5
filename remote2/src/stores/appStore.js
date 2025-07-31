@@ -7,13 +7,36 @@ export const useAppStore = create(
     (set) => ({
       // UI State
       showActors: false,
+      shouldFetchActors: false,
 
       // Actions
       setShowActors: (show) =>
         set({ showActors: show }, false, 'setShowActors'),
 
+      setShouldFetchActors: (should) =>
+        set({ shouldFetchActors: should }, false, 'setShouldFetchActors'),
+
+      // Trigger both show and fetch
+      loadActors: () =>
+        set(
+          {
+            showActors: true,
+            shouldFetchActors: true,
+          },
+          false,
+          'loadActors'
+        ),
+
       // Reset to initial state
-      reset: () => set({ showActors: false }, false, 'reset'),
+      reset: () =>
+        set(
+          {
+            showActors: false,
+            shouldFetchActors: false,
+          },
+          false,
+          'reset'
+        ),
     }),
     {
       name: 'app-store', // DevTools name
