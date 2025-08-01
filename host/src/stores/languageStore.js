@@ -3,7 +3,15 @@ import { subscribeWithSelector } from 'zustand/middleware';
 
 export const useLanguageStore = create(
   subscribeWithSelector((set, get) => ({
-    language: 'es',
+    language: (() => {
+      if (typeof window !== 'undefined') {
+        const stored = localStorage.getItem('language');
+        if (stored && ['es', 'en'].includes(stored)) return stored;
+        const browserLang = navigator.language?.slice(0, 2);
+        if (['es', 'en'].includes(browserLang)) return browserLang;
+      }
+      return 'es';
+    })(),
     translations: {
       es: {
         welcome: 'Bienvenido al MFE Host',
@@ -49,7 +57,14 @@ export const useLanguageStore = create(
       })),
     t: (key) => {
       const { language, translations } = get();
-      return translations[language][key] || key;
+      if (translations[language] && translations[language][key]) {
+        return translations[language][key];
+      } else {
+        console.warn(
+          `Missing translation for key "${key}" in language "${language}"`
+        );
+        return 'Translation missing';
+      }
     },
   }))
 );
