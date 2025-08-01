@@ -1,0 +1,46 @@
+{
+  "name": "tech-challenge-n5",
+  "version": "1.0.0",
+  "description": "Microfrontends application with series and movie character displays",
+  "scripts": {
+    "install:all": "cd host && pnpm install && cd ../remote && pnpm install && cd ../remote2 && pnpm install",
+    "dev:host": "cd host && pnpm run dev",
+    "dev:remote": "cd remote && pnpm run dev",
+    "dev:remote2": "cd remote2 && pnpm run dev",
+    "dev:all": "concurrently \"npm run dev:host\" \"npm run dev:remote\" \"npm run dev:remote2\"",
+    "build:host": "cd host && pnpm run build",
+    "build:remote": "cd remote && pnpm run build",
+    "build:remote2": "cd remote2 && pnpm run build",
+    "build:all": "npm run build:host && npm run build:remote && npm run build:remote2",
+    "test:host": "cd host && pnpm run test",
+    "test:remote": "cd remote && pnpm run test",
+    "test:remote2": "cd remote2 && pnpm run test",
+    "test:all": "concurrently \"npm run test:host\" \"npm run test:remote\" \"npm run test:remote2\"",
+    "test:run:host": "cd host && pnpm run test:run",
+    "test:run:remote": "cd remote && pnpm run test:run",
+    "test:run:remote2": "cd remote2 && pnpm run test:run",
+    "test:run:all": "npm run test:run:host && npm run test:run:remote && npm run test:run:remote2",
+    "test:coverage:host": "cd host && pnpm run test:coverage",
+    "test:coverage:remote": "cd remote && pnpm run test:coverage",
+    "test:coverage:remote2": "cd remote2 && pnpm run test:coverage",
+    "test:coverage:all": "npm run test:coverage:host && npm run test:coverage:remote && npm run test:coverage:remote2",
+    "lint:host": "cd host && pnpm run lint",
+    "lint:remote": "cd remote && pnpm run lint",
+    "lint:remote2": "cd remote2 && pnpm run lint",
+    "lint:all": "npm run lint:host && npm run lint:remote && npm run lint:remote2"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "keywords": [
+    "microfrontends",
+    "react",
+    "vite",
+    "styled-components",
+    "testing",
+    "vitest",
+    "tmdb"
+  ],
+  "author": "Challenge Team",
+  "license": "MIT"
+}
