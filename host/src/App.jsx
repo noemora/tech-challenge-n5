@@ -1,17 +1,16 @@
 import styled from 'styled-components';
-import './App.css';
 import RemoteApp1 from 'remote/App';
 import RemoteApp2 from 'remote2/App';
 import { useLanguageStore } from './stores/languageStore';
 import LanguageSelector from './components/LanguageSelector';
 
-const AppContainer = styled.div`
+const App = styled.div`
   min-height: 100vh;
   background: linear-gradient(135deg, #667eea 0%, #f093fb 50%, #f5576c 100%);
   padding: 20px;
 `;
 
-const Header = styled.header`
+const App__Header = styled.header`
   margin-bottom: 30px;
   text-align: center;
   padding: 20px;
@@ -21,7 +20,7 @@ const Header = styled.header`
   backdrop-filter: blur(10px);
 `;
 
-const HeaderContent = styled.div`
+const App__HeaderContent = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -34,7 +33,7 @@ const HeaderContent = styled.div`
   }
 `;
 
-const Title = styled.h1`
+const App__Title = styled.h1`
   color: #2d3748;
   font-size: 3rem;
   font-weight: 800;
@@ -51,29 +50,29 @@ const Title = styled.h1`
   }
 `;
 
-const MicrofrontendsContainer = styled.div`
+const App__MicrofrontendsContainer = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 20px;
 `;
 
-function App() {
+function AppComponent() {
   const { t } = useLanguageStore();
 
   return (
-    <AppContainer>
-      <Header>
-        <HeaderContent>
-          <Title>{t('welcome')}</Title>
+    <App>
+      <App__Header>
+        <App__HeaderContent>
+          <App__Title>{t('welcome')}</App__Title>
           <LanguageSelector />
-        </HeaderContent>
-      </Header>
-      <MicrofrontendsContainer>
+        </App__HeaderContent>
+      </App__Header>
+      <App__MicrofrontendsContainer>
         <RemoteApp1 />
         <RemoteApp2 />
-      </MicrofrontendsContainer>
-    </AppContainer>
+      </App__MicrofrontendsContainer>
+    </App>
   );
 }
 
-export default App;
+export default AppComponent;

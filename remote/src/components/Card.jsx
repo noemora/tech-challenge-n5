@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const StyledCard = styled.div`
+const Card = styled.div`
   display: flex;
   flex-direction: column;
   width: 280px;
@@ -28,7 +28,7 @@ const StyledCard = styled.div`
   }
 `;
 
-const ImageContainer = styled.div`
+const Card__ImageContainer = styled.div`
   position: relative;
   width: 100%;
   height: 300px;
@@ -36,25 +36,25 @@ const ImageContainer = styled.div`
   background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
 `;
 
-const StyledImage = styled.img`
+const Card__Image = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.2s ease;
 
-  ${StyledCard}:hover & {
+  ${Card}:hover & {
     transform: scale(1.03);
   }
 `;
 
-const ContentContainer = styled.div`
+const Card__Content = styled.div`
   padding: 18px;
   display: flex;
   flex-direction: column;
   background: linear-gradient(to bottom, #ffffff, #f8f8f8);
 `;
 
-const Title = styled.h3`
+const Card__Title = styled.h3`
   color: #333333;
   font-size: 1.1rem;
   font-weight: 700;
@@ -64,7 +64,7 @@ const Title = styled.h3`
   letter-spacing: 0.3px;
 `;
 
-const Description = styled.p`
+const Card__Description = styled.p`
   color: #666666;
   font-size: 0.9rem;
   line-height: 1.5;
@@ -73,16 +73,16 @@ const Description = styled.p`
   font-weight: 500;
 `;
 
-export default function Card({ image, title, content }) {
+export default function CardComponent({ image, title, content }) {
   return (
-    <StyledCard>
-      <ImageContainer>
-        <StyledImage src={image} alt={title} />
-      </ImageContainer>
-      <ContentContainer>
-        <Title>{title}</Title>
-        <Description>{content}</Description>
-      </ContentContainer>
-    </StyledCard>
+    <Card>
+      <Card__ImageContainer>
+        <Card__Image src={image} alt={title} />
+      </Card__ImageContainer>
+      <Card__Content>
+        <Card__Title>{title}</Card__Title>
+        <Card__Description>{content}</Card__Description>
+      </Card__Content>
+    </Card>
   );
 }

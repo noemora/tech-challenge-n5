@@ -1,20 +1,20 @@
 import styled from 'styled-components';
 import { useLanguageStore } from '../stores/languageStore';
 
-const SelectorContainer = styled.div`
+const LanguageSelector = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
 `;
 
-const Label = styled.span`
+const LanguageSelector__Label = styled.span`
   font-size: 14px;
   font-weight: 500;
   color: #4a5568;
   margin-right: 5px;
 `;
 
-const Select = styled.select`
+const LanguageSelector__Select = styled.select`
   padding: 8px 12px;
   font-size: 14px;
   border: 2px solid #e2e8f0;
@@ -43,12 +43,12 @@ const Select = styled.select`
   }
 `;
 
-const FlagIcon = styled.span`
+const LanguageSelector__FlagIcon = styled.span`
   font-size: 18px;
   margin-right: 8px;
 `;
 
-export default function LanguageSelector() {
+export default function LanguageSelectorComponent() {
   const { language, setLanguage, t } = useLanguageStore();
 
   const handleLanguageChange = (event) => {
@@ -56,12 +56,15 @@ export default function LanguageSelector() {
   };
 
   return (
-    <SelectorContainer>
-      <Label>{t('language')}:</Label>
-      <Select value={language} onChange={handleLanguageChange}>
+    <LanguageSelector>
+      <LanguageSelector__Label>{t('language')}:</LanguageSelector__Label>
+      <LanguageSelector__Select
+        value={language}
+        onChange={handleLanguageChange}
+      >
         <option value="es">🇪🇸 Español</option>
         <option value="en">🇺🇸 English</option>
-      </Select>
-    </SelectorContainer>
+      </LanguageSelector__Select>
+    </LanguageSelector>
   );
 }

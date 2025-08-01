@@ -5,8 +5,7 @@ function getInitialLanguage() {
   if (typeof window !== 'undefined') {
     const stored = localStorage.getItem('language');
     if (stored && ['es', 'en'].includes(stored)) return stored;
-    const browserLang = navigator.language?.slice(0, 2);
-    if (['es', 'en'].includes(browserLang)) return browserLang;
+    localStorage.setItem('language', 'es');
   }
   return 'es';
 }
@@ -25,11 +24,9 @@ export const useLanguageStore = create(
         movie: 'Película',
         welcomeRemote: 'Bienvenido al MFE Remoto',
         welcomeRemote2: 'Bienvenido al MFE Remoto2',
-        // UI Messages
         loadingActors: 'Cargando actores...',
         scroll: 'Desplázate para ver más actores',
         somethingWentWrong: 'Algo salió mal',
-        // Actor descriptions
         character: 'Personaje',
         unknown: 'Desconocido',
       },
@@ -43,20 +40,27 @@ export const useLanguageStore = create(
         movie: 'Movie',
         welcomeRemote: 'Welcome to the Remote MFE',
         welcomeRemote2: 'Welcome to the Remote2 MFE',
-        // UI Messages
         loadingActors: 'Loading actors...',
         scroll: 'Scroll to see more actors',
         somethingWentWrong: 'Something went wrong',
-        // Actor descriptions
         character: 'Character',
         unknown: 'Unknown',
       },
     },
-    setLanguage: (language) => set({ language }),
+    setLanguage: (language) => {
+      set({ language });
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('language', language);
+      }
+    },
     toggleLanguage: () =>
-      set((state) => ({
-        language: state.language === 'es' ? 'en' : 'es',
-      })),
+      set((state) => {
+        const newLanguage = state.language === 'es' ? 'en' : 'es';
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('language', newLanguage);
+        }
+        return { language: newLanguage };
+      }),
     t: (key) => {
       const { language, translations } = get();
       if (translations[language] && translations[language][key]) {
