@@ -1,13 +1,12 @@
 import styled from 'styled-components';
-import './App.css';
 import Button from './components/Button.jsx';
 import CardList from './components/CardList.jsx';
 import { useAppStore } from './stores/appStore.js';
 import { MOVIE_IDS, UI_MESSAGES } from './constants/app.js';
 import { useLanguageStore } from 'host/LanguageStore';
 
-const AppContainer = styled.div`
-  min-height: 85vh;
+const App = styled.div`
+  height: auto;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   padding: 40px 20px;
   display: flex;
@@ -15,7 +14,7 @@ const AppContainer = styled.div`
   align-items: center;
 `;
 
-const Title = styled.h1`
+const App__Title = styled.h1`
   color: #ffffff;
   font-size: 3rem;
   font-weight: 700;
@@ -29,7 +28,7 @@ const Title = styled.h1`
   }
 `;
 
-const Subtitle = styled.h1`
+const App__Subtitle = styled.h1`
   color: #ffffff;
   font-size: 2rem;
   font-weight: 700;
@@ -43,11 +42,11 @@ const Subtitle = styled.h1`
   }
 `;
 
-const ButtonContainer = styled.div`
+const App__ButtonContainer = styled.div`
   margin-bottom: 20px;
 `;
 
-function App() {
+function AppComponent() {
   const showActors = useAppStore((state) => state.showActors);
   const loadActors = useAppStore((state) => state.loadActors);
   const { t } = useLanguageStore();
@@ -57,19 +56,19 @@ function App() {
   };
 
   return (
-    <AppContainer>
-      <Title>{t('welcomeRemote2')}</Title>
-      <Subtitle>
+    <App>
+      <App__Title>{t('welcomeRemote2')}</App__Title>
+      <App__Subtitle>
         {t('movie')}: {MOVIE_IDS.FEATURED_MOVIE_TITLE}
-      </Subtitle>
+      </App__Subtitle>
 
-      <ButtonContainer>
+      <App__ButtonContainer>
         <Button onClick={handleLoadActors}>{t('loadActors')}</Button>
-      </ButtonContainer>
+      </App__ButtonContainer>
 
       {showActors && <CardList />}
-    </AppContainer>
+    </App>
   );
 }
 
-export default App;
+export default AppComponent;

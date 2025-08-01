@@ -12,7 +12,7 @@ const slideIn = keyframes`
   to { opacity: 1; transform: translateX(0); }
 `;
 
-const LoadingContainer = styled.div`
+const Message = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,7 +20,7 @@ const LoadingContainer = styled.div`
   animation: ${slideIn} 0.6s ease-out;
 `;
 
-const Spinner = styled.div`
+const Message__Spinner = styled.div`
   width: 50px;
   height: 50px;
   border: 5px solid rgba(40, 167, 69, 0.2);
@@ -29,7 +29,7 @@ const Spinner = styled.div`
   animation: ${bounce} 1.5s infinite;
 `;
 
-const LoadingText = styled.p`
+const Message__Text = styled.p`
   color: #28a745;
   font-size: 1.2rem;
   font-weight: 600;
@@ -38,7 +38,7 @@ const LoadingText = styled.p`
   font-family: 'Arial', sans-serif;
 `;
 
-const ErrorContainer = styled.div`
+const Message_Error = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -51,7 +51,7 @@ const ErrorContainer = styled.div`
   animation: ${slideIn} 0.6s ease-out;
 `;
 
-const ErrorText = styled.p`
+const Message__Text_Error = styled.p`
   color: #dc3545;
   font-size: 1.2rem;
   font-weight: 600;
@@ -61,17 +61,17 @@ const ErrorText = styled.p`
   font-family: 'Arial', sans-serif;
 `;
 
-const ErrorIcon = styled.div`
+const Message__Icon_Error = styled.div`
   font-size: 2.5rem;
   color: #dc3545;
   animation: ${bounce} 2s infinite;
 `;
 
 export const LoadingMessage = ({ message = 'Loading...' }) => (
-  <LoadingContainer>
-    <Spinner />
-    <LoadingText>{message}</LoadingText>
-  </LoadingContainer>
+  <Message>
+    <Message__Spinner />
+    <Message__Text>{message}</Message__Text>
+  </Message>
 );
 
 export const ErrorMessage = ({ error, fallbackMessage }) => {
@@ -79,9 +79,9 @@ export const ErrorMessage = ({ error, fallbackMessage }) => {
   const defaultMessage = fallbackMessage || t('somethingWentWrong');
 
   return (
-    <ErrorContainer>
-      <ErrorIcon>❌</ErrorIcon>
-      <ErrorText>{error || defaultMessage}</ErrorText>
-    </ErrorContainer>
+    <Message_Error>
+      <Message__Icon_Error>❌</Message__Icon_Error>
+      <Message__Text_Error>{error || defaultMessage}</Message__Text_Error>
+    </Message_Error>
   );
 };

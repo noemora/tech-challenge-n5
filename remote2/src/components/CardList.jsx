@@ -5,7 +5,7 @@ import { LoadingMessage, ErrorMessage } from './ui/Messages.jsx';
 import { MOVIE_IDS, UI_MESSAGES } from '../constants/app.js';
 import { useLanguageStore } from 'host/LanguageStore';
 
-const Container = styled.div`
+const CardList = styled.div`
   width: 100%;
   padding: 0 20px;
 
@@ -14,7 +14,7 @@ const Container = styled.div`
   }
 `;
 
-const StyledCardList = styled.div`
+const CardList__Container = styled.div`
   display: flex;
   gap: 32px;
   max-width: 100vw;
@@ -67,14 +67,14 @@ const StyledCardList = styled.div`
   }
 `;
 
-const MessageContainer = styled.div`
+const CardList__MessageContainer = styled.div`
   text-align: center;
   padding: 60px 20px;
   color: #ffffff;
   font-size: 1.2rem;
 `;
 
-const ScrollHint = styled.div`
+const CardList__ScrollHint = styled.div`
   text-align: center;
   color: rgba(255, 255, 255, 0.8);
   font-size: 0.9rem;
@@ -114,7 +114,7 @@ const ScrollHint = styled.div`
 `;
 
 // Component responsible only for rendering the list of cards
-export default function CardList() {
+export default function CardListComponent() {
   const {
     data: actors = [],
     isLoading,
@@ -124,28 +124,28 @@ export default function CardList() {
 
   if (isLoading) {
     return (
-      <Container>
-        <MessageContainer>
+      <CardList>
+        <CardList__MessageContainer>
           <LoadingMessage message={t('loadingActors')} />
-        </MessageContainer>
-      </Container>
+        </CardList__MessageContainer>
+      </CardList>
     );
   }
 
   if (error) {
     return (
-      <Container>
-        <MessageContainer>
+      <CardList>
+        <CardList__MessageContainer>
           <ErrorMessage error={error.message} />
-        </MessageContainer>
-      </Container>
+        </CardList__MessageContainer>
+      </CardList>
     );
   }
 
   return (
-    <Container>
-      <ScrollHint>{t('scroll')}</ScrollHint>
-      <StyledCardList>
+    <CardList>
+      <CardList__ScrollHint>{t('scroll')}</CardList__ScrollHint>
+      <CardList__Container>
         {actors.map((actor) => (
           <Card
             key={actor.id}
@@ -154,7 +154,7 @@ export default function CardList() {
             content={actor.description}
           />
         ))}
-      </StyledCardList>
-    </Container>
+      </CardList__Container>
+    </CardList>
   );
 }

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const StyledButton = styled.button`
+const Button = styled.button`
   background: linear-gradient(135deg, #ff6b35, #f7931e);
   color: white;
   border: none;
@@ -34,14 +34,14 @@ const StyledButton = styled.button`
   }
 `;
 
-export default function Button({
+export default function ButtonComponent({
   onClick,
   children = 'Load Actors',
   disabled = false,
 }) {
   return (
-    <StyledButton onClick={onClick} disabled={disabled}>
+    <Button onClick={onClick} disabled={disabled}>
       {children}
-    </StyledButton>
+    </Button>
   );
 }

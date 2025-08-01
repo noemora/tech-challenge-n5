@@ -11,7 +11,7 @@ const fadeIn = keyframes`
   to { opacity: 1; transform: translateY(0); }
 `;
 
-const LoadingContainer = styled.div`
+const Message = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,7 +19,7 @@ const LoadingContainer = styled.div`
   animation: ${fadeIn} 0.5s ease-out;
 `;
 
-const Spinner = styled.div`
+const Message__Spinner = styled.div`
   width: 40px;
   height: 40px;
   border: 4px solid rgba(255, 255, 255, 0.3);
@@ -28,7 +28,7 @@ const Spinner = styled.div`
   animation: ${spin} 1s linear infinite;
 `;
 
-const LoadingText = styled.p`
+const Message__Text = styled.p`
   color: #ffffff;
   font-size: 1.1rem;
   font-weight: 500;
@@ -36,7 +36,7 @@ const LoadingText = styled.p`
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 `;
 
-const ErrorContainer = styled.div`
+const Message_Error = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -49,7 +49,7 @@ const ErrorContainer = styled.div`
   animation: ${fadeIn} 0.5s ease-out;
 `;
 
-const ErrorText = styled.p`
+const Message__Text_Error = styled.p`
   color: #ff6b7a;
   font-size: 1.1rem;
   font-weight: 500;
@@ -58,16 +58,16 @@ const ErrorText = styled.p`
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 `;
 
-const ErrorIcon = styled.div`
+const Message__Icon_Error = styled.div`
   font-size: 2rem;
   color: #ff6b7a;
 `;
 
 export const LoadingMessage = ({ message = 'Loading...' }) => (
-  <LoadingContainer>
-    <Spinner />
-    <LoadingText>{message}</LoadingText>
-  </LoadingContainer>
+  <Message>
+    <Message__Spinner />
+    <Message__Text>{message}</Message__Text>
+  </Message>
 );
 
 export const ErrorMessage = ({ error, fallbackMessage }) => {
@@ -75,9 +75,9 @@ export const ErrorMessage = ({ error, fallbackMessage }) => {
   const defaultMessage = fallbackMessage || t('somethingWentWrong');
 
   return (
-    <ErrorContainer>
-      <ErrorIcon>⚠️</ErrorIcon>
-      <ErrorText>{error || defaultMessage}</ErrorText>
-    </ErrorContainer>
+    <Message_Error>
+      <Message__Icon_Error>⚠️</Message__Icon_Error>
+      <Message__Text_Error>{error || defaultMessage}</Message__Text_Error>
+    </Message_Error>
   );
 };
