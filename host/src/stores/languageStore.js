@@ -1,17 +1,19 @@
 import { create } from 'zustand';
 import { subscribeWithSelector } from 'zustand/middleware';
 
+function getInitialLanguage() {
+  if (typeof window !== 'undefined') {
+    const stored = localStorage.getItem('language');
+    if (stored && ['es', 'en'].includes(stored)) return stored;
+    const browserLang = navigator.language?.slice(0, 2);
+    if (['es', 'en'].includes(browserLang)) return browserLang;
+  }
+  return 'es';
+}
+
 export const useLanguageStore = create(
   subscribeWithSelector((set, get) => ({
-    language: (() => {
-      if (typeof window !== 'undefined') {
-        const stored = localStorage.getItem('language');
-        if (stored && ['es', 'en'].includes(stored)) return stored;
-        const browserLang = navigator.language?.slice(0, 2);
-        if (['es', 'en'].includes(browserLang)) return browserLang;
-      }
-      return 'es';
-    })(),
+    language: getInitialLanguage(),
     translations: {
       es: {
         welcome: 'Bienvenido al MFE Host',
@@ -63,7 +65,7 @@ export const useLanguageStore = create(
         console.warn(
           `Missing translation for key "${key}" in language "${language}"`
         );
-        return 'Translation missing';
+        return key;
       }
     },
   }))
