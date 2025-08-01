@@ -5,9 +5,16 @@ function getInitialLanguage() {
   if (typeof window !== 'undefined') {
     const stored = localStorage.getItem('language');
     if (stored && ['es', 'en'].includes(stored)) return stored;
-    localStorage.setItem('language', 'es');
+    const browserLang = (navigator.language || navigator.userLanguage || '')
+      .slice(0, 2)
+      .toLowerCase();
+    const supportedLangs = ['es', 'en'];
+    const detectedLang = supportedLangs.includes(browserLang)
+      ? browserLang
+      : 'es';
+    localStorage.setItem('language', detectedLang);
+    return detectedLang;
   }
-  return 'es';
 }
 
 export const useLanguageStore = create(

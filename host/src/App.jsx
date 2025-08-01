@@ -52,7 +52,7 @@ const App__Title = styled.h1`
 
 const App__MicrofrontendsContainer = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 20px;
 `;
 

@@ -6,7 +6,7 @@ import { SERIES_IDS, UI_MESSAGES } from './constants/app.js';
 import { useLanguageStore } from 'host/LanguageStore';
 
 const App = styled.div`
-  min-height: 85vh;
+  height: auto;
   background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
   padding: 30px 15px;
   display: flex;

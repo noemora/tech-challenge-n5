@@ -6,7 +6,7 @@ import { MOVIE_IDS, UI_MESSAGES } from './constants/app.js';
 import { useLanguageStore } from 'host/LanguageStore';
 
 const App = styled.div`
-  min-height: 85vh;
+  height: auto;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   padding: 40px 20px;
   display: flex;
