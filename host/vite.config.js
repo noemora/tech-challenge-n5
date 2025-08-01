@@ -8,6 +8,10 @@ export default defineConfig({
     react(),
     federation({
       name: 'host',
+      filename: 'remoteEntry.js',
+      exposes: {
+        './LanguageStore': './src/stores/languageStore.js',
+      },
       remotes: {
         remote: 'http://localhost:5001/assets/remoteEntry.js',
         remote2: 'http://localhost:5002/assets/remoteEntry.js',

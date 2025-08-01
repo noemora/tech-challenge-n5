@@ -4,6 +4,7 @@ import Button from './components/Button.jsx';
 import CardList from './components/CardList.jsx';
 import { useAppStore } from './stores/appStore.js';
 import { MOVIE_IDS, UI_MESSAGES } from './constants/app.js';
+import { useLanguageStore } from 'host/LanguageStore';
 
 const AppContainer = styled.div`
   min-height: 85vh;
@@ -49,6 +50,7 @@ const ButtonContainer = styled.div`
 function App() {
   const showActors = useAppStore((state) => state.showActors);
   const loadActors = useAppStore((state) => state.loadActors);
+  const { t } = useLanguageStore();
 
   const handleLoadActors = () => {
     loadActors();
@@ -56,11 +58,13 @@ function App() {
 
   return (
     <AppContainer>
-      <Title>Welcome to the Remote2 MFE</Title>
-      <Subtitle>Movie: {MOVIE_IDS.FEATURED_MOVIE_TITLE}</Subtitle>
+      <Title>{t('welcomeRemote2')}</Title>
+      <Subtitle>
+        {t('movie')}: {MOVIE_IDS.FEATURED_MOVIE_TITLE}
+      </Subtitle>
 
       <ButtonContainer>
-        <Button onClick={handleLoadActors}>{UI_MESSAGES.LOAD_ACTORS}</Button>
+        <Button onClick={handleLoadActors}>{t('loadActors')}</Button>
       </ButtonContainer>
 
       {showActors && <CardList />}

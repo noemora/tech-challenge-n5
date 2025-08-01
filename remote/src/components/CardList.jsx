@@ -3,6 +3,7 @@ import Card from './Card.jsx';
 import { useActors } from '../hooks/useActors.js';
 import { LoadingMessage, ErrorMessage } from './ui/Messages.jsx';
 import { SERIES_IDS, UI_MESSAGES } from '../constants/app.js';
+import { useLanguageStore } from 'host/LanguageStore';
 
 const Container = styled.div`
   width: 100%;
@@ -120,12 +121,13 @@ export default function CardList() {
     isLoading,
     error,
   } = useActors(SERIES_IDS.DEFAULT, 10);
+  const { t } = useLanguageStore();
 
   if (isLoading) {
     return (
       <Container>
         <MessageContainer>
-          <LoadingMessage message={UI_MESSAGES.LOADING_ACTORS} />
+          <LoadingMessage message={t('loadingActors')} />
         </MessageContainer>
       </Container>
     );
@@ -143,7 +145,7 @@ export default function CardList() {
 
   return (
     <Container>
-      <ScrollHint>{UI_MESSAGES.SCROLL}</ScrollHint>
+      <ScrollHint>{t('scroll')}</ScrollHint>
       <StyledCardList>
         {actors.map((actor) => (
           <Card
