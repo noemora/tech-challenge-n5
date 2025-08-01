@@ -1,12 +1,70 @@
+import styled from 'styled-components';
 import './App.css';
 import Button from './components/Button.jsx';
+import CardList from './components/CardList.jsx';
+import { useAppStore } from './stores/appStore.js';
+import { MOVIE_IDS, UI_MESSAGES } from './constants/app.js';
+
+const AppContainer = styled.div`
+  min-height: 85vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const Title = styled.h1`
+  color: #ffffff;
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 0 0 20px 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  letter-spacing: 1px;
+  text-align: center;
+
+  @media (max-width: 768px) {
+    font-size: 2.2rem;
+  }
+`;
+
+const Subtitle = styled.h1`
+  color: #ffffff;
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 20px 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  letter-spacing: 1px;
+  text-align: center;
+
+  @media (max-width: 768px) {
+    font-size: 2.2rem;
+  }
+`;
+
+const ButtonContainer = styled.div`
+  margin-bottom: 20px;
+`;
 
 function App() {
+  const showActors = useAppStore((state) => state.showActors);
+  const loadActors = useAppStore((state) => state.loadActors);
+
+  const handleLoadActors = () => {
+    loadActors();
+  };
+
   return (
-    <div className="App">
-      <h1>Welcome to the Remote2 App</h1>
-      <Button />
-    </div>
+    <AppContainer>
+      <Title>Welcome to the Remote2 MFE</Title>
+      <Subtitle>Movie: {MOVIE_IDS.FEATURED_MOVIE_TITLE}</Subtitle>
+
+      <ButtonContainer>
+        <Button onClick={handleLoadActors}>{UI_MESSAGES.LOAD_ACTORS}</Button>
+      </ButtonContainer>
+
+      {showActors && <CardList />}
+    </AppContainer>
   );
 }
 

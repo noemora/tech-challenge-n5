@@ -12,7 +12,13 @@ export default defineConfig({
         remote: 'http://localhost:5001/assets/remoteEntry.js',
         remote2: 'http://localhost:5002/assets/remoteEntry.js',
       },
-      shared: ['react', 'react-dom'],
+      shared: [
+        'react',
+        'react-dom',
+        'styled-components',
+        '@tanstack/react-query',
+        'zustand',
+      ],
     }),
   ],
   build: {

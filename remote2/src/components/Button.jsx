@@ -1,24 +1,46 @@
-import { useState } from 'react';
 import styled from 'styled-components';
 
 const StyledButton = styled.button`
-  background-color: #007bff;
+  background: linear-gradient(145deg, #667eea, #764ba2);
   color: white;
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+  padding: 15px 30px;
+  border-radius: 12px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3), 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
   &:hover {
-    background-color: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4),
+      0 4px 12px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(145deg, #7c94eb, #8555b3);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3),
+      0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
   }
 `;
-
-export default function Button() {
-  const [state, setState] = useState(0);
+export default function Button({
+  onClick,
+  children = 'Load Actors',
+  disabled = false,
+}) {
   return (
-    <StyledButton onClick={() => setState((prev) => prev + 1)}>
-      Click me from remote 2: {state}
+    <StyledButton onClick={onClick} disabled={disabled}>
+      {children}
     </StyledButton>
   );
 }
