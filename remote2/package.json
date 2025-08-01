@@ -11,8 +11,8 @@
     "serve": "vite serve --port 5002 --strictPort"
   },
   "dependencies": {
-    "@tanstack/react-query": "^5.83.1",
-    "@tanstack/react-query-devtools": "^5.83.1",
+    "@tanstack/react-query": "^5.84.0",
+    "@tanstack/react-query-devtools": "^5.84.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "styled-components": "^6.1.19",
