@@ -6,14 +6,14 @@ import { useLanguageStore } from 'host/LanguageStore';
 
 // TanStack Query hook for fetching actors
 export const useActors = (seriesId, limit = 10) => {
-  const { language } = useLanguageStore();
+  const { language, t } = useLanguageStore();
   const apiLanguage = language === 'es' ? 'es-ES' : 'en-US';
 
   const query = useQuery({
     queryKey: ['actors', seriesId, limit, language],
     queryFn: async () => {
       const creditsData = await fetchSeriesCredits(seriesId, apiLanguage);
-      return transformCreditsToActors(creditsData, limit);
+      return transformCreditsToActors(creditsData, t, limit);
     },
     enabled: !!seriesId, // Only fetch when seriesId exists
     staleTime: QUERY_CONFIG.STALE_TIME,
