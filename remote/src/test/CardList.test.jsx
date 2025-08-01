@@ -2,10 +2,10 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-// Mock del hook useActors
+// Mock hook useActors for series
 const mockUseActors = vi.fn();
 
-// Mock de los componentes que no existen
+// Mock non-existent components
 vi.mock('../hooks/useActors', () => ({
   useActors: mockUseActors,
 }));
@@ -19,7 +19,7 @@ vi.mock('../constants/app.js', () => ({
   SERIES_IDS: { DEFAULT: 1234 },
 }));
 
-// Componente simplificado para testing
+// Simplified component for testing series
 const SimpleCardList = () => {
   const { data: actors = [], isLoading, error } = mockUseActors();
 

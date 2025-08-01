@@ -53,7 +53,7 @@ describe('useActors Hook - Mock Tests', () => {
     expect(result.error).toBeNull();
   });
 
-  it('should return Click actors data when loaded', () => {
+  it('should return actors data when loaded', () => {
     const mockClickActors = [
       { id: 1, name: 'Adam Sandler', character: 'Michael Newman' },
       { id: 2, name: 'Kate Beckinsale', character: 'Donna Newman' },
@@ -75,7 +75,7 @@ describe('useActors Hook - Mock Tests', () => {
     expect(result.isSuccess).toBe(true);
   });
 
-  it('should return error when Click cast fetch fails', () => {
+  it('should return error when cast fetch fails', () => {
     const mockError = new Error('Failed to fetch Click cast');
 
     mockUseActors.mockReturnValue({
@@ -107,7 +107,7 @@ describe('useActors Hook - Mock Tests', () => {
     expect(mockUseActors).toHaveBeenCalledWith(550, 5);
   });
 
-  it('should handle empty Click cast results', () => {
+  it('should handle empty cast results', () => {
     mockUseActors.mockReturnValue({
       data: [],
       isLoading: false,

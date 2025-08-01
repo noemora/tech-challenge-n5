@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 import LanguageSelector from '../components/LanguageSelector';
 import { useLanguageStore } from '../stores/languageStore';
 
-// Mock del store
+// Mock store
 vi.mock('../stores/languageStore');
 
 describe('LanguageSelector', () => {
