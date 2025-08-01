@@ -10,9 +10,15 @@ export default defineConfig({
       name: 'remote',
       filename: 'remoteEntry.js',
       exposes: {
-        './Button': './src/Button.jsx',
+        './App': './src/App.jsx',
       },
-      shared: ['react', 'react-dom'],
+      shared: [
+        'react',
+        'react-dom',
+        'styled-components',
+        '@tanstack/react-query',
+        'zustand',
+      ],
     }),
   ],
   build: {
