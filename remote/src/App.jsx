@@ -3,7 +3,7 @@ import './App.css';
 import Button from './components/Button.jsx';
 import CardList from './components/CardList.jsx';
 import { useAppStore } from './stores/appStore.js';
-import { MOVIE_IDS, UI_MESSAGES } from './constants/app.js';
+import { SERIES_IDS, UI_MESSAGES } from './constants/app.js';
 
 const AppContainer = styled.div`
   min-height: 85vh;
@@ -58,7 +58,7 @@ function App() {
   return (
     <AppContainer>
       <Title>Welcome to the Remote MFE</Title>
-      <Subtitle>Series: {MOVIE_IDS.FEATURED_MOVIE_TITLE}</Subtitle>
+      <Subtitle>Series: {SERIES_IDS.FEATURED_SERIES_TITLE}</Subtitle>
 
       <ButtonContainer>
         <Button onClick={handleLoadActors}>{UI_MESSAGES.LOAD_ACTORS}</Button>

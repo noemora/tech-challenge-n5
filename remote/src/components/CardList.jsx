@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Card from './Card.jsx';
 import { useActors } from '../hooks/useActors.js';
 import { LoadingMessage, ErrorMessage } from './ui/Messages.jsx';
-import { MOVIE_IDS, UI_MESSAGES } from '../constants/app.js';
+import { SERIES_IDS, UI_MESSAGES } from '../constants/app.js';
 
 const Container = styled.div`
   width: 100%;
@@ -119,7 +119,7 @@ export default function CardList() {
     data: actors = [],
     isLoading,
     error,
-  } = useActors(MOVIE_IDS.DEFAULT, 10);
+  } = useActors(SERIES_IDS.DEFAULT, 10);
 
   if (isLoading) {
     return (

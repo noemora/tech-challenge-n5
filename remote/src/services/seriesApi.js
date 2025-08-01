@@ -13,11 +13,11 @@ if (!API_CONFIG.token) {
   throw new Error('VITE_TMDB_API_TOKEN is required but not provided');
 }
 
-// Pure function to fetch movie credits
-export const fetchMovieCredits = async (movieId, language = 'en-US') => {
+// Pure function to fetch series credits
+export const fetchSeriesCredits = async (seriesId, language = 'en-US') => {
   try {
     const response = await fetch(
-      `${API_CONFIG.baseUrl}/tv/${movieId}/credits?language=${language}`,
+      `${API_CONFIG.baseUrl}/tv/${seriesId}/credits?language=${language}`,
       {
         method: 'GET',
         headers: {
@@ -33,7 +33,7 @@ export const fetchMovieCredits = async (movieId, language = 'en-US') => {
 
     return await response.json();
   } catch (error) {
-    console.error('Error fetching movie credits:', error);
+    console.error('Error fetching series credits:', error);
     throw error;
   }
 };

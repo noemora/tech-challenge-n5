@@ -1,8 +1,8 @@
 // Application constants
-export const MOVIE_IDS = {
-  DEFAULT: parseInt(import.meta.env.VITE_DEFAULT_MOVIE_ID) || 34307,
-  FEATURED_MOVIE_TITLE:
-    import.meta.env.VITE_FEATURED_MOVIE_TITLE || 'Shameless',
+export const SERIES_IDS = {
+  DEFAULT: parseInt(import.meta.env.VITE_DEFAULT_SERIES_ID) || 34307,
+  FEATURED_SERIES_TITLE:
+    import.meta.env.VITE_FEATURED_SERIES_TITLE || 'Shameless',
 };
 
 export const DISPLAY_LIMITS = {

@@ -1,4 +1,4 @@
-import { getImageUrl } from '../services/movieApi.js';
+import { getImageUrl } from '../services/seriesApi.js';
 
 // Pure function to transform actor data from API response
 export const transformActor = (apiActor) => ({
