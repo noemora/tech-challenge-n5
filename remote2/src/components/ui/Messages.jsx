@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components';
+import { useLanguageStore } from 'host/LanguageStore';
 
 const spin = keyframes`
   0% { transform: rotate(0deg); }
@@ -69,12 +70,14 @@ export const LoadingMessage = ({ message = 'Loading...' }) => (
   </LoadingContainer>
 );
 
-export const ErrorMessage = ({
-  error,
-  fallbackMessage = 'Something went wrong',
-}) => (
-  <ErrorContainer>
-    <ErrorIcon>⚠️</ErrorIcon>
-    <ErrorText>{error || fallbackMessage}</ErrorText>
-  </ErrorContainer>
-);
+export const ErrorMessage = ({ error, fallbackMessage }) => {
+  const { t } = useLanguageStore();
+  const defaultMessage = fallbackMessage || t('somethingWentWrong');
+
+  return (
+    <ErrorContainer>
+      <ErrorIcon>⚠️</ErrorIcon>
+      <ErrorText>{error || defaultMessage}</ErrorText>
+    </ErrorContainer>
+  );
+};
